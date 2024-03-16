@@ -1,20 +1,35 @@
 #include <stdio.h>
 #include <ctype.h>
 
-void capitalizeWords(char *str) {
+// void capitalizeWords(char *str) {
+//     int capitalizeNext = 1;
+    
+//     while (*str) {
+//         if (isspace(*str)) {
+//             capitalizeNext = 1;
+//         } else if (capitalizeNext) {
+//             *str = toupper(*str);
+//             capitalizeNext = 0;
+//         } else {
+//             *str = tolower(*str);
+//         }
+        
+//         str++;
+//     }
+// }
+
+void capitalizeWords(char str[]) {
     int capitalizeNext = 1;
     
-    while (*str) {
-        if (isspace(*str)) {
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (isspace(str[i])) {
             capitalizeNext = 1;
         } else if (capitalizeNext) {
-            *str = toupper(*str);
+            str[i] = toupper(str[i]);
             capitalizeNext = 0;
         } else {
-            *str = tolower(*str);
+            str[i] = tolower(str[i]);
         }
-        
-        str++;
     }
 }
 
