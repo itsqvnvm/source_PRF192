@@ -1,64 +1,72 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
-// int isDocument(const char* filename) {
-//     const char* extensions[] = {".txt", ".doc", ".docx", ".rtf"};
+// int isDocument(char *fileName) {
+//     char *extensions[] = {"txt", "doc", "docx", "rtf"};
 //     int numExtensions = sizeof(extensions) / sizeof(extensions[0]);
 
-//     const char* fileExtension = strrchr(filename, '.');
-//     if (fileExtension != NULL) {
+//     char *extension = strrchr(fileName, '.');
+//     if (extension != NULL) {
+//         extension++; // Move past the dot character
+
 //         for (int i = 0; i < numExtensions; i++) {
-//             if (strcmp(fileExtension, extensions[i]) == 0) {
-//                 return 1; // File is a document
+//             if (strcasecmp(extension, extensions[i]) == 0) {
+//                 return 1; // Document extension found
 //             }
 //         }
 //     }
 
-//     return 0; // File is not a document
+//     return 0; // Not a document extension
 // }
 
-int isDocument(const char filename[]) {
-    const char extensions[][5] = {".txt", ".doc", ".docx", ".rtf"};
+// The code not working properly because of the upper case and lower case letters are not identified properly
+int isDocument(char fileName[]) {
+    char extensions[][5] = {"txt", "doc", "docx", "rtf"};
     int numExtensions = sizeof(extensions) / sizeof(extensions[0]);
 
-    char fileExtension[5];
-    int filenameLength = strlen(filename);
-    int extensionLength = 0;
-    int dotIndex = -1;
+    char extension[5];
+    int extensionIndex = 0;
+    int fileNameLength = strlen(fileName);
 
-    // Find the index of the last dot in the filename
-    for (int i = filenameLength - 1; i >= 0; i--) {
-        if (filename[i] == '.') {
-            dotIndex = i;
+    // Extract the extension from the file name
+    for (int i = fileNameLength - 1; i >= 0; i--) {
+        if (fileName[i] == '.') {
             break;
         }
+      
+    }
+    extension[extensionIndex] = '\0';
+
+    // Reverse the extension
+    int start = 0;
+    int end = extensionIndex - 1;
+    while (start < end) {
+        char temp = extension[start];
+        extension[start] = extension[end];
+        extension[end] = temp;
+        start++;
+        end--;
     }
 
-    // If there is a dot in the filename, extract the extension
-    if (dotIndex != -1) {
-        extensionLength = filenameLength - dotIndex;
-        strncpy(fileExtension, filename + dotIndex, extensionLength);
-    }
-
-    // Check if the extracted extension matches any of the valid extensions
+    // Check if the extension matches any document extensions
     for (int i = 0; i < numExtensions; i++) {
-        if (strncmp(fileExtension, extensions[i], extensionLength) == 0) {
-            return 1; // File is a document
+        if (strcmp(extension, extensions[i]) == 0) {
+            return 1; // Document extension found
         }
     }
 
-    return 0; // File is not a document
+    return 0; // Not a document extension
 }
-
 int main() {
-    char filename[100];
-    printf("Enter the filename: ");
-    scanf("%s", filename);
+    char fileName[100];
+    printf("Enter a file name: ");
+    scanf("%s", fileName);
 
-    if (isDocument(filename)) {
+    if (isDocument(fileName)) {
         printf("The file is a document.\n");
     } else {
-        printf("Invalid file.\n");
+        printf("The file is not a document.\n");
     }
 
     return 0;
