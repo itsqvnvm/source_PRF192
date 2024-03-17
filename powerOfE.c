@@ -1,21 +1,23 @@
 #include <stdio.h>
+#include <math.h>
 
-double calculatePowerOfE(double x, double epsilon) {
+double calculatePowerOfE(int x, double epsilon) {
     double result = 1.0;
     double term = 1.0;
-    int n = 1;
+    int i = 1;
 
-    while (term > epsilon) {
-        term *= x / n;
+    while (fabs(term) > epsilon) {
+        term *= x / (double)i;
         result += term;
-        n++;
+        i++;
     }
 
-    return result;
+    return round(result * 1e6) / 1e6; // Round the result to 6 decimal places
 }
 
 int main() {
     double x, epsilon;
+
     printf("Enter the value of x: ");
     scanf("%lf", &x);
 
@@ -23,7 +25,8 @@ int main() {
     scanf("%lf", &epsilon);
 
     double powerOfE = calculatePowerOfE(x, epsilon);
-    printf("e^%.2lf = %.6lf\n", x, powerOfE);
+
+    printf("e^%lf = %.6lf\n", x, powerOfE);
 
     return 0;
 }
