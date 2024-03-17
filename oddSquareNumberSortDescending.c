@@ -32,6 +32,7 @@ int main() {
         }
     }
 
+
     sortDescending(oddSquares, count);
 
     printf("Odd numbers squared in descending order:\n");
