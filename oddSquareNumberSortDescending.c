@@ -37,7 +37,7 @@ int main() {
 
     printf("Odd numbers squared in descending order:\n");
     for (int i = 0; i < count; i++) {
-        printf("%d ", oddSquares[i]);
+        printf("%d \n", oddSquares[i]);
     }
     printf("\n");
 
