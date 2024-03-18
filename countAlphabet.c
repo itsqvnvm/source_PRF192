@@ -15,7 +15,7 @@
 // }
 
 void countAlphabets(const char *str, int *count) {
-    while (*str) {
+    while (*str != '\0') {
         if (isalpha(*str)) {
             int index = tolower(*str) - 'a';
             count[index]++;
