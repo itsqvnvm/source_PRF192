@@ -1,0 +1,8 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/quangvinhdao/Downloads/PE02_PRF192_SP24_542378/PaperNo_1/2/src/output/Q2'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _calculateS, symObjAddr: 0x0, symBinAddr: 0x100003DB8, symSize: 0xC4 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _calculateS, symObjAddr: 0x0, symBinAddr: 0x100003DB8, symSize: 0xC4 }
+  - { offsetInCU: 0xCB, offset: 0xCB, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0xC4, symBinAddr: 0x100003E7C, symSize: 0xC0 }
+...
